@@ -1,14 +1,21 @@
 ; Advent of Code 2022
 ; Day 1
 
+; Load input file
 if zero? size arg [print "Input file not specified" exit]
 items: read.lines arg\0
 
-; Part 1
+; Compute total calories for each elf
 elves: []
 elf: 0
 loop items 'item [
   if? zero? size item [elves: elves ++ elf elf: 0]
   else -> elf: elf + to :integer item
 ]
+
+; Part 1
 print ["Part 1: the most calories carried is " ++ to :string max elves]
+
+; Part 2
+total: sum take sort.descending elves 3
+print ["Part 2: the three elves carrying the most have " ++ to :string total]
